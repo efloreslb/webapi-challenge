@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => { // RETURNS NULL
    try {
-      const projects = await Projects.get(req.query);
+      const projects = await Projects.get();
       res.status(200).json(projects)
    } catch {
       res.status(500).json({error: "Error retrieving data"})
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
    }
 })
 
-router.get('/project-actions/:id', async (req, res) => {
+router.get('/actions/:id', async (req, res) => {
    const { id } = req.params;
    try {
       const project = await Projects.getProjectActions(id);
